@@ -1,8 +1,14 @@
+import Header from "./components/Header";
+import {Outlet} from "react-router-dom";
+import Body from './components/Body'
+
+
 function App() {
   return (
-    <div>
-      <h1>지겹도룩 연습하는 우디의 토이프로젝트 월요일까지 해오도록</h1>
-    </div>
+    <Body>
+      <Header />
+      <Outlet />
+    </Body>
   );
 }
 
