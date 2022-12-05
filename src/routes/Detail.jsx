@@ -40,6 +40,7 @@ export default function Detail(){
         marginRight={"auto"}
         marginTop={"20px"}
         backgroundImage={makeImagePath(movie.backdrop_path)}
+        opacity={0.8}
         backgroundSize={'cover'}
         backgroundPosition={'center'} 
         backgroundRepeat={"no-repeat"}
@@ -49,24 +50,24 @@ export default function Detail(){
                 
                 <Box display={"flex"} gap={2} paddingLeft={"20px"}>
                     {movie.genres && movie.genres.map((genre)=>{
-                        return <Box backgroundColor={"whiteAlpha.500"} padding={"2px"}>{genre.name}</Box>
+                        return <Box backgroundColor={"whiteAlpha.500"} padding={"3px"} fontWeight={"bold"}>{genre.name}</Box>
                     })}
                 </Box>
                 
                 <Box paddingLeft={"20px"}>
                     <Text fontSize={"3xl"} fontWeight={"bold"}>{movie.title}</Text>
-                    <Text fontSize={"14px"} color={"whiteAlpha.700"}>{movie.original_title}-{year.slice(0,4)}</Text>
-                    <Text>⭐{star.slice(0,3)}</Text>
+                    <Text fontSize={"14px"} color={"whiteAlpha.700"}>{movie.original_title} - {year.slice(0,4)}</Text>
+                    <Text>⭐ {star.slice(0,3)}</Text>
                 </Box>
                 
                 
-                <Box backgroundColor={"blackAlpha.800"} marginTop={"20px"}>
-                    <Stack direction='row' h='100px' p={4} paddingLeft={"20px"}>
+                <Box backgroundColor={"gray.900"} marginTop={"20px"}>
+                    <Stack direction='row' h='80px' p={4} paddingLeft={"20px"}>
                         <Divider orientation='vertical' borderColor={"red"} marginRight={"30px"}/>
                         <Text 
                             fontStyle={"italic"} 
                             fontSize={"1xs"} 
-                            lineHeight={"70px"}
+                            lineHeight={"50px"}
                             >{movie.tagline}</Text>
                     </Stack>
                     <Box paddingLeft={"20px"}>
