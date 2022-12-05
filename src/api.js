@@ -1,31 +1,45 @@
-const BASE_PATH = "https://api.themoviedb.org/3";
+import axios from "axios";
 
-export function getMovies() {
-  return fetch(
+const BASE_PATH = "https://api.themoviedb.org/3/";
+
+const instance = axios.create({
+  baseURL: BASE_PATH,
+});
+
+export async function getMovies() {
+  const response = await fetch(
     `${BASE_PATH}/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
-  ).then((response) => response.json());
+  );
+  const json = await response.json();
+  return json;
 }
 
-export function getPopularMovies() {
-  return fetch(
-    `${BASE_PATH}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
-  ).then((response) => response.json());
+export async function getPopularMovies() {
+  const response = await instance.get(
+    `movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
+  );
+  return response.data;
 }
 
-export function getUpcomingMovies() {
-  return fetch(
-    `${BASE_PATH}/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
-  ).then((response) => response.json());
-}
+export const getUpcomingMovies = () =>
+  instance
+    .get(
+      `movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
+    )
+    .then((response) => response.data);
 
-export function getTopRatedMovies() {
-  return fetch(
-    `${BASE_PATH}/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
-  ).then((response) => response.json());
-}
+export const getTopRatedMovies = () =>
+  instance
+    .get(
+      `movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&page=1&region=kr`
+    )
+    .then((response) => response.data);
 
-export function getMovie(id) {
-  return fetch(
-    `${BASE_PATH}/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&region=kr`
-  ).then((response) => response.json());
-}
+export const getMoive = ({ queryKey }) => {
+  const [_, id] = queryKey;
+  return instance
+    .get(
+      `movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=ko-KR&region=kr`
+    )
+    .then((response) => response.data);
+};

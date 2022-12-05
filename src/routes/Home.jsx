@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   getMovies,
   getPopularMovies,
@@ -9,32 +9,19 @@ import {
 import Section from "../components/Section";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isPopularLoading, setIsPopularLoading] = useState(true);
-  const [isUpcomingLoading, setIsUpcomingLoading] = useState(true);
-  const [isTopRatedLoading, setIsTopRatedLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [popularData, setPopularData] = useState([]);
-  const [upcomingData, setUpcomingData] = useState([]);
-  const [topRatedData, setTopRatedData] = useState([]);
-  useEffect(() => {
-    getMovies().then((json) => {
-      setData(json.results);
-      setIsLoading(false);
-    });
-    getPopularMovies().then((json) => {
-      setPopularData(json.results);
-      setIsPopularLoading(false);
-    });
-    getUpcomingMovies().then((json) => {
-      setUpcomingData(json.results);
-      setIsUpcomingLoading(false);
-    });
-    getTopRatedMovies().then((json) => {
-      setTopRatedData(json.results);
-      setIsTopRatedLoading(false);
-    });
-  }, []);
+  const { isLoading, data } = useQuery(["nowPlayingMovies"], getMovies);
+  const { isLoading: isPopularLoading, data: popularData } = useQuery(
+    ["popularMovies"],
+    getPopularMovies
+  );
+  const { isLoading: isUpcomingLoading, data: upcomingData } = useQuery(
+    ["upcomingMovies"],
+    getUpcomingMovies
+  );
+  const { isLoading: isTopRatedLoading, data: topRatedData } = useQuery(
+    ["topRatedMovies"],
+    getTopRatedMovies
+  );
   return (
     <Box>
       <Section

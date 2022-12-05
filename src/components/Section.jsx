@@ -17,12 +17,12 @@ export default function Section({ data, isLoading, main = false, title }) {
           templateColumns={"repeat(4, 1fr)"}
           gap={2}
         >
-          {data.slice(0, 3).map((movie, i) => (
+          {data.results.slice(0, 3).map((movie, i) => (
             <GridItem key={movie.id} rowSpan={2} colSpan={i === 0 ? 2 : 1}>
               <Item {...movie} />
             </GridItem>
           ))}
-          {data.slice(3, 7).map((movie) => (
+          {data.results.slice(3, 7).map((movie) => (
             <GridItem key={movie.id}>
               <Item {...movie} />
             </GridItem>
@@ -30,7 +30,7 @@ export default function Section({ data, isLoading, main = false, title }) {
         </Grid>
       ) : (
         <Grid templateColumns={"repeat(6, 1fr)"} gap="2">
-          {data.slice(0, 6).map((movie) => (
+          {data.results.slice(0, 6).map((movie) => (
             <GridItem key={movie.id}>
               <Poster {...movie} />
             </GridItem>
@@ -42,7 +42,7 @@ export default function Section({ data, isLoading, main = false, title }) {
 }
 
 Section.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
   isLoading: PropTypes.bool,
   main: PropTypes.bool,
   title: PropTypes.string.isRequired,

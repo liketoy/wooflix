@@ -1,20 +1,13 @@
 import { Badge, Box, Divider, Stack, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { getMovie } from "../api";
+import { getMoive } from "../api";
 import Loading from "../components/Loading";
 import { makeImagePath } from "../utils";
 
 export default function Detail() {
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    getMovie(id).then((json) => {
-      setData(json);
-      setIsLoading(false);
-    });
-  }, [id]);
+  const { isLoading, data } = useQuery(["movie", id], getMoive);
   return (
     <Box py={10}>
       {isLoading ? (
