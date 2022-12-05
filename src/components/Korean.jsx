@@ -4,7 +4,7 @@ import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { makeImagePath } from "../utils";
 import { Text } from "@chakra-ui/react";
 
-function KoreanSeries(){
+export default function KoreanSeries(){
     const [loading, setLoading] = useState(true);
     const [movies, setMovies] = useState([]);
 
@@ -57,5 +57,3 @@ function KoreanSeries(){
         </Box>
     )
 }
-
-export default KoreanSeries;
