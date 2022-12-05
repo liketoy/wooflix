@@ -6,3 +6,7 @@
 export function makeImagePath(path) {
   return `https://image.tmdb.org/t/p/original/${path}`;
 }
+
+export function makeApiPath(apipath) {
+  return `https://api.themoviedb.org/3/movie/${apipath}?api_key=69dc528378613ffdddf3bf5f1b554971&language=ko-KR&page=1&region=kr`;
+}
