@@ -7,6 +7,8 @@ import { makeImagePath } from "../utils";
 
 export default function Detail() {
   const { id } = useParams();
+  // useQuery에서 변수를 api함수에 가져오는 방법
+  // key값이 담긴 array에 다음자리에 변수를 넣어준다.
   const { isLoading, data } = useQuery(["movie", id], getMoive);
   return (
     <Box py={10}>

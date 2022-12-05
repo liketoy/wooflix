@@ -36,6 +36,7 @@ export const getTopRatedMovies = () =>
     .then((response) => response.data);
 
 export const getMoive = ({ queryKey }) => {
+  console.log(queryKey);
   const [_, id] = queryKey;
   return instance
     .get(

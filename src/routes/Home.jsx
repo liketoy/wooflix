@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import {
   getMovies,
   getPopularMovies,
@@ -9,6 +10,9 @@ import {
 import Section from "../components/Section";
 
 export default function Home() {
+  // useQuery를 쓸때 중요한 점
+  // 1. [key]값을 설정해준다. (key값은 중복되선 안된다.)
+  // 2. 두번째 인수 자리에 api를 호출하는 함수를 쓴다.(함수에()를 붙이진 않는다.)
   const { isLoading, data } = useQuery(["nowPlayingMovies"], getMovies);
   const { isLoading: isPopularLoading, data: popularData } = useQuery(
     ["popularMovies"],
